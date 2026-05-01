@@ -44,23 +44,20 @@ body {
   border-radius: 2px;
 }
 
-/* GRID */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 14px;
+  gap: 16px;
 }
 
-/* BOOK CARD */
 .book-card {
   display: block;
   text-decoration: none;
-  position: relative;
   border-radius: 10px;
   overflow: hidden;
+  background: #1e293b;
   transition: transform 0.2s, box-shadow 0.2s;
   box-shadow: 0 4px 16px rgba(0,0,0,0.5);
-  background: #1e293b;
 }
 
 .book-card:hover {
@@ -70,23 +67,29 @@ body {
 
 .book-card img {
   width: 100%;
-  height: 240px;
-  object-fit: cover;
+  aspect-ratio: 2 / 3;
+  object-fit: contain;      /* ← image entière, rien de coupé */
   display: block;
-  border-radius: 10px;
+  background: #1e293b;
 }
 
-/* Prix badge */
-.price-badge {
-  position: absolute;
-  bottom: 8px;
-  right: 8px;
-  background: #facc15;
-  color: #000;
+.book-info {
+  padding: 8px 10px 12px;
+  text-align: left;
+}
+
+.book-title {
+  font-size: 12px;
+  font-weight: 600;
+  color: #e2e8f0;
+  line-height: 1.3;
+  margin-bottom: 4px;
+}
+
+.book-price {
   font-size: 11px;
   font-weight: 700;
-  padding: 3px 9px;
-  border-radius: 20px;
+  color: #facc15;
 }
 
 .footer {
@@ -99,70 +102,96 @@ body {
 </style>
 </head>
 <body>
-
 <div class="container">
 
-  <!-- HEADER -->
   <div class="brand">LUVAYO</div>
   <div class="tagline">Reset your mind. Rebuild your life.</div>
   <div class="divider"></div>
 
-  <!-- GRID EBOOKS -->
   <div class="grid">
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/OverthinkingReset" target="_blank">
       <img src="overthinking.png" alt="Stop Overthinking in 7 Days">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">Stop Overthinking in 7 Days</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/anxiety" target="_blank">
       <img src="anxiety.png" alt="Calm Your Mind Fast">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">Calm Your Mind Fast</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/nightanxiety" target="_blank">
       <img src="nightanxiety.png" alt="The Night Anxiety Cure">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">The Night Anxiety Cure</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/chaos" target="_blank">
       <img src="chaos.png" alt="From Chaos to Clarity">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">From Chaos to Clarity</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/confidence" target="_blank">
       <img src="confidence.png" alt="Unshakable Confidence">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">Unshakable Confidence</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/socialanxiety" target="_blank">
       <img src="socialanxiety.png" alt="Social Anxiety Fix">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">Social Anxiety Fix</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/magnetic" target="_blank">
       <img src="magnetic.png" alt="Be Magnetic">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">Be Magnetic</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/reset" target="_blank">
       <img src="reset.png" alt="Reset Your Life in 30 Days">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">Reset Your Life in 30 Days</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/burnout" target="_blank">
       <img src="burnout.png" alt="The Burnout Recovery Plan">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">The Burnout Recovery Plan</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
     <a class="book-card" href="https://luvayo.gumroad.com/l/minimalist" target="_blank">
       <img src="minimalist.png" alt="Minimalist Mindset">
-      <span class="price-badge">$9.99</span>
+      <div class="book-info">
+        <div class="book-title">Minimalist Mindset</div>
+        <div class="book-price">$9.99</div>
+      </div>
     </a>
 
   </div>
 
-  <!-- FOOTER -->
   <div class="footer">© 2026 LUVAYO DIGITAL — ALL RIGHTS RESERVED</div>
 
 </div>
