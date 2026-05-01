@@ -5,6 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Luvayo Digital — Mental Reset Systems</title>
 <style>
+
+* { box-sizing: border-box; }
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, sans-serif;
@@ -12,90 +15,225 @@ body {
   color: #e2e8f0;
   text-align: center;
 }
+
 .container {
-  max-width: 420px;
+  max-width: 480px;
   margin: auto;
-  padding: 40px 20px;
+  padding: 40px 20px 60px;
 }
+
 .brand {
-  font-size: 26px;
-  font-weight: 700;
-  letter-spacing: 1px;
+  font-size: 28px;
+  font-weight: 800;
+  letter-spacing: 2px;
   color: #facc15;
+  margin-bottom: 6px;
+}
+
+.tagline {
+  font-size: 14px;
+  color: #94a3b8;
   margin-bottom: 10px;
 }
-.tagline {
-  font-size: 15px;
-  color: #94a3b8;
-  margin-bottom: 30px;
+
+.divider {
+  width: 40px;
+  height: 2px;
+  background: #facc15;
+  margin: 16px auto 30px;
+  border-radius: 2px;
 }
+
 .section-title {
-  font-size: 14px;
+  font-size: 11px;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  color: #64748b;
-  margin: 30px 0 10px;
+  letter-spacing: 2px;
+  color: #475569;
+  margin: 30px 0 16px;
 }
-.link {
+
+/* GRID */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 16px;
+}
+
+.grid.single {
+  grid-template-columns: 1fr;
+  max-width: 220px;
+  margin: 0 auto 16px;
+}
+
+/* BOOK CARD */
+.book-card {
   display: block;
   text-decoration: none;
-  background: #1e293b;
-  color: white;
-  padding: 16px;
-  margin: 12px 0;
-  border-radius: 12px;
-  font-size: 16px;
-  transition: 0.2s;
-  border: 1px solid transparent;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.4);
 }
-.link:hover {
-  background: #334155;
+
+.book-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(250,204,21,0.2);
 }
-.primary {
-  background: linear-gradient(90deg, #facc15, #eab308);
+
+.book-card img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+/* Badge prix */
+.price-badge {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  background: #facc15;
   color: #000;
-  font-weight: bold;
+  font-size: 11px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
 }
+
+/* Featured (premier ebook) */
+.featured-card {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 2px solid #facc15;
+  box-shadow: 0 0 24px rgba(250,204,21,0.15);
+  transition: transform 0.2s, box-shadow 0.2s;
+  margin-bottom: 8px;
+}
+
+.featured-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 36px rgba(250,204,21,0.3);
+}
+
+.featured-card img {
+  width: 100%;
+  display: block;
+  border-radius: 10px;
+}
+
+.featured-label {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #facc15;
+  color: #000;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 20px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.featured-price {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+  background: rgba(0,0,0,0.7);
+  color: #facc15;
+  font-size: 13px;
+  font-weight: 700;
+  padding: 4px 10px;
+  border-radius: 20px;
+}
+
 .footer {
-  margin-top: 40px;
-  font-size: 12px;
-  color: #64748b;
+  margin-top: 50px;
+  font-size: 11px;
+  color: #334155;
+  letter-spacing: 1px;
 }
+
 </style>
 </head>
 <body>
+
 <div class="container">
 
-<div class="brand">LUVAYO</div>
-<div class="tagline">Reset your mind. Rebuild your life.</div>
+  <!-- HEADER -->
+  <div class="brand">LUVAYO</div>
+  <div class="tagline">Reset your mind. Rebuild your life.</div>
+  <div class="divider"></div>
 
-<div class="section-title">Start Here</div>
+  <!-- FEATURED -->
+  <div class="section-title">⭐ Best Seller</div>
 
-<a class="link primary" href="https://luvayo.gumroad.com/l/OverthinkingReset">
-  🧠 Stop Overthinking in 7 Days
-  <br><small>7-Day Mental Reset System</small>
-</a>
+  <a class="featured-card" href="https://luvayo.gumroad.com/l/OverthinkingReset" target="_blank">
+    <img src="overthinking.png" alt="Stop Overthinking in 7 Days">
+    <span class="featured-label">🔥 Start Here</span>
+    <span class="featured-price">$9.99</span>
+  </a>
 
-<div class="section-title">Programs</div>
+  <!-- ROW 1 -->
+  <div class="section-title">Programs</div>
 
-<a class="link" href="https://luvayo.gumroad.com/l/anxiety">
-  😰 Anxiety Control System
-  <br><small>Reduce stress & regain calm</small>
-</a>
+  <div class="grid">
 
-<a class="link" href="https://luvayo.gumroad.com/l/deepfocus">
-  🎯 Deep Focus Protocol
-  <br><small>Train your attention</small>
-</a>
+    <a class="book-card" href="https://luvayo.gumroad.com/l/anxiety" target="_blank">
+      <img src="anxiety.png" alt="Calm Your Mind Fast">
+      <span class="price-badge">$9.99</span>
+    </a>
 
-<a class="link" href="https://luvayo.gumroad.com/l/confidence">
-  💪 Confidence Rebuild
-  <br><small>Eliminate self-doubt</small>
-</a>
+    <a class="book-card" href="https://luvayo.gumroad.com/l/nightanxiety" target="_blank">
+      <img src="nightanxiety.png" alt="The Night Anxiety Cure">
+      <span class="price-badge">$9.99</span>
+    </a>
 
-<div class="footer">
-  © 2026 Luvayo Digital
-</div>
+    <a class="book-card" href="https://luvayo.gumroad.com/l/chaos" target="_blank">
+      <img src="chaos.png" alt="From Chaos to Clarity">
+      <span class="price-badge">$9.99</span>
+    </a>
+
+    <a class="book-card" href="https://luvayo.gumroad.com/l/confidence" target="_blank">
+      <img src="confidence.png" alt="Unshakable Confidence">
+      <span class="price-badge">$9.99</span>
+    </a>
+
+    <a class="book-card" href="https://luvayo.gumroad.com/l/socialanxiety" target="_blank">
+      <img src="socialanxiety.png" alt="Social Anxiety Fix">
+      <span class="price-badge">$9.99</span>
+    </a>
+
+    <a class="book-card" href="https://luvayo.gumroad.com/l/magnetic" target="_blank">
+      <img src="magnetic.png" alt="Be Magnetic">
+      <span class="price-badge">$9.99</span>
+    </a>
+
+    <a class="book-card" href="https://luvayo.gumroad.com/l/reset" target="_blank">
+      <img src="reset.png" alt="Reset Your Life in 30 Days">
+      <span class="price-badge">$9.99</span>
+    </a>
+
+    <a class="book-card" href="https://luvayo.gumroad.com/l/burnout" target="_blank">
+      <img src="burnout.png" alt="The Burnout Recovery Plan">
+      <span class="price-badge">$9.99</span>
+    </a>
+
+  </div>
+
+  <div class="grid single">
+    <a class="book-card" href="https://luvayo.gumroad.com/l/minimalist" target="_blank">
+      <img src="minimalist.png" alt="Minimalist Mindset">
+      <span class="price-badge">$9.99</span>
+    </a>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">© 2026 LUVAYO DIGITAL — ALL RIGHTS RESERVED</div>
 
 </div>
 </body>
