@@ -6,29 +6,33 @@
 <title>Luvayo Digital — Mental Reset Systems</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
+
 body {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: #0f172a;
   color: #e2e8f0;
   min-height: 100vh;
 }
+
 .store {
-  max-width: 680px;
+  max-width: 480px;
   margin: 0 auto;
-  padding: 40px 20px 60px;
+  padding: 36px 20px 60px;
 }
+
+/* HEADER */
 .header { text-align: center; margin-bottom: 28px; }
 .brand {
-  font-size: 28px;
+  font-size: 26px;
   font-weight: 700;
-  letter-spacing: 4px;
+  letter-spacing: 5px;
   color: #D4A017;
   margin-bottom: 6px;
 }
 .tagline {
   font-size: 13px;
-  color: #94a3b8;
-  margin-bottom: 0;
+  color: #64748b;
+  letter-spacing: 0.3px;
 }
 .divider {
   width: 36px;
@@ -45,8 +49,8 @@ body {
   gap: 10px;
   background: #1e293b;
   border: 1px solid #334155;
-  border-radius: 10px;
-  padding: 11px 16px;
+  border-radius: 12px;
+  padding: 12px 16px;
   margin-bottom: 28px;
   transition: border-color 0.2s;
 }
@@ -60,8 +64,8 @@ body {
   width: 100%;
 }
 .search-wrap input::placeholder { color: #475569; }
-.search-icon { color: #475569; flex-shrink: 0; }
 
+/* NO RESULT */
 .no-result {
   display: none;
   text-align: center;
@@ -70,11 +74,11 @@ body {
   padding: 50px 0;
 }
 
-/* GRID */
+/* GRID — 2 colonnes fixes */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 24px;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
 }
 
 /* BOOK CARD */
@@ -82,30 +86,29 @@ body {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  cursor: pointer;
   text-decoration: none;
   color: inherit;
 }
 .book-wrap:hover .book-3d {
-  transform: perspective(600px) rotateY(-10deg) translateY(-5px);
+  transform: perspective(700px) rotateY(-12deg) translateY(-6px);
 }
 
-/* 3D BOOK */
+/* 3D EFFECT */
 .book-3d {
   position: relative;
   width: 100%;
   aspect-ratio: 2 / 3;
-  transform: perspective(600px) rotateY(-5deg);
-  transition: transform 0.25s ease;
+  transform: perspective(700px) rotateY(-5deg);
+  transition: transform 0.28s ease;
   transform-style: preserve-3d;
 }
 .book-cover {
   position: absolute;
   inset: 0;
-  border-radius: 2px 6px 6px 2px;
+  border-radius: 2px 7px 7px 2px;
   overflow: hidden;
   background: #1e293b;
-  box-shadow: 4px 6px 20px rgba(0,0,0,0.6);
+  box-shadow: 5px 8px 24px rgba(0,0,0,0.65);
 }
 .book-cover img {
   width: 100%;
@@ -119,58 +122,46 @@ body {
   display: none;
   align-items: center;
   justify-content: center;
-  padding: 12px;
+  padding: 14px;
   background: #10203a;
   text-align: center;
-  font-size: 11px;
+  font-size: 12px;
   color: #D4A017;
   font-weight: 600;
-  line-height: 1.4;
+  line-height: 1.5;
 }
 .book-spine {
   position: absolute;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 10px;
+  width: 11px;
   background: #07111f;
   border-radius: 2px 0 0 2px;
-  transform: rotateY(-90deg) translateZ(5px);
+  transform: rotateY(-90deg) translateZ(5.5px);
   transform-origin: left center;
 }
 .book-shadow {
   position: absolute;
   bottom: -8px;
-  left: 8px;
+  left: 10px;
   right: -6px;
-  height: 12px;
-  background: rgba(0,0,0,0.35);
+  height: 14px;
+  background: rgba(0,0,0,0.4);
   border-radius: 50%;
-  filter: blur(5px);
+  filter: blur(6px);
   z-index: -1;
-}
-.book-badge {
-  position: absolute;
-  top: 8px;
-  right: 8px;
-  background: #D4A017;
-  color: #0a1628;
-  font-size: 9px;
-  font-weight: 700;
-  padding: 2px 6px;
-  border-radius: 3px;
-  letter-spacing: 0.5px;
 }
 
 /* BOOK INFO */
 .book-info {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 4px;
   padding: 0 2px;
 }
 .book-title {
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 600;
   color: #e2e8f0;
   line-height: 1.4;
@@ -180,7 +171,7 @@ body {
   overflow: hidden;
 }
 .book-price {
-  font-size: 14px;
+  font-size: 15px;
   font-weight: 700;
   color: #D4A017;
 }
@@ -188,25 +179,40 @@ body {
   display: flex;
   flex-wrap: wrap;
   gap: 4px;
-  margin-top: 3px;
+  margin-top: 2px;
 }
 .meta-tag {
   font-size: 10px;
   color: #94a3b8;
   background: #1e293b;
-  border: 1px solid #334155;
-  border-radius: 3px;
-  padding: 2px 5px;
+  border: 1px solid #1e3a5f;
+  border-radius: 4px;
+  padding: 2px 6px;
   white-space: nowrap;
 }
+.meta-tag.gold {
+  color: #D4A017;
+  border-color: #3d2e07;
+  background: #1c1505;
+}
 
+/* FOOTER */
 .footer {
   text-align: center;
   margin-top: 50px;
   font-size: 11px;
-  color: #334155;
-  letter-spacing: 1px;
+  color: #1e293b;
+  letter-spacing: 1.5px;
   text-transform: uppercase;
+}
+
+/* MOBILE */
+@media (max-width: 400px) {
+  .store { padding: 28px 14px 50px; }
+  .brand { font-size: 22px; }
+  .grid { gap: 14px; }
+  .book-title { font-size: 12px; }
+  .book-price { font-size: 14px; }
 }
 </style>
 </head>
@@ -220,17 +226,14 @@ body {
     <div class="divider"></div>
   </div>
 
-  <!-- SEARCH -->
   <div class="search-wrap">
-    <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <svg width="15" height="15" fill="none" stroke="#475569" stroke-width="2" viewBox="0 0 24 24" style="flex-shrink:0">
       <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
     </svg>
     <input type="text" id="searchInput" placeholder="Search an ebook..." oninput="filterBooks()">
   </div>
 
   <div class="no-result" id="noResult">No ebook found. Try another word.</div>
-
-  <!-- GRID -->
   <div class="grid" id="bookGrid"></div>
 
   <div class="footer">© 2026 Luvayo Digital — All Rights Reserved</div>
@@ -244,7 +247,6 @@ const books = [
     price: "$9.99",
     pages: "62 pages",
     size: "2.4 MB",
-    format: "PDF",
     img: "overthinking.png",
     url: "https://luvayo.gumroad.com/l/OverthinkingReset",
     tags: ["overthinking","anxiety","focus","mind"]
@@ -254,7 +256,6 @@ const books = [
     price: "$9.99",
     pages: "58 pages",
     size: "2.2 MB",
-    format: "PDF",
     img: "anxiety.png",
     url: "https://luvayo.gumroad.com/l/anxiety",
     tags: ["anxiety","calm","system","nervous"]
@@ -264,7 +265,6 @@ const books = [
     price: "$9.99",
     pages: "54 pages",
     size: "2.1 MB",
-    format: "PDF",
     img: "nightanxiety.png",
     url: "https://luvayo.gumroad.com/l/anxiety",
     tags: ["night","anxiety","sleep","cure"]
@@ -274,7 +274,6 @@ const books = [
     price: "$9.99",
     pages: "60 pages",
     size: "2.3 MB",
-    format: "PDF",
     img: "chaos.png",
     url: "https://luvayo.gumroad.com/l/chaos",
     tags: ["focus","clarity","productivity","chaos"]
@@ -284,7 +283,6 @@ const books = [
     price: "$9.99",
     pages: "56 pages",
     size: "2.0 MB",
-    format: "PDF",
     img: "confidence.png",
     url: "https://luvayo.gumroad.com/l/confidence",
     tags: ["confidence","mindset","self","doubt"]
@@ -294,7 +292,6 @@ const books = [
     price: "$9.99",
     pages: "52 pages",
     size: "1.9 MB",
-    format: "PDF",
     img: "socialanxiety.png",
     url: "https://luvayo.gumroad.com/l/socialanxiety",
     tags: ["social","anxiety","people","shyness"]
@@ -304,7 +301,6 @@ const books = [
     price: "$9.99",
     pages: "50 pages",
     size: "1.8 MB",
-    format: "PDF",
     img: "magnetic.png",
     url: "https://luvayo.gumroad.com/l/magnetic",
     tags: ["charisma","attraction","magnetic","social"]
@@ -314,7 +310,6 @@ const books = [
     price: "$9.99",
     pages: "78 pages",
     size: "2.9 MB",
-    format: "PDF",
     img: "reset.png",
     url: "https://luvayo.gumroad.com/l/reset",
     tags: ["reset","life","transformation","30 days"]
@@ -324,7 +319,6 @@ const books = [
     price: "$9.99",
     pages: "64 pages",
     size: "2.5 MB",
-    format: "PDF",
     img: "burnout.png",
     url: "https://luvayo.gumroad.com/l/burnout",
     tags: ["burnout","stress","recovery","energy"]
@@ -334,7 +328,6 @@ const books = [
     price: "$9.99",
     pages: "48 pages",
     size: "1.7 MB",
-    format: "PDF",
     img: "minimalist.png",
     url: "https://luvayo.gumroad.com/l/minimalist",
     tags: ["minimalist","simple","clarity","focus"]
@@ -343,11 +336,7 @@ const books = [
 
 function renderBooks(list) {
   const grid = document.getElementById('bookGrid');
-  if (list.length === 0) {
-    grid.style.display = 'none';
-    return;
-  }
-  grid.style.display = 'grid';
+  grid.style.display = list.length === 0 ? 'none' : 'grid';
   grid.innerHTML = list.map(b => `
     <a class="book-wrap" href="${b.url}" target="_blank">
       <div class="book-3d">
@@ -358,7 +347,6 @@ function renderBooks(list) {
           <div class="book-cover-fallback">${b.title}</div>
         </div>
         <div class="book-shadow"></div>
-        <div class="book-badge">PDF</div>
       </div>
       <div class="book-info">
         <div class="book-title">${b.title}</div>
@@ -366,7 +354,8 @@ function renderBooks(list) {
         <div class="book-meta">
           <span class="meta-tag">${b.pages}</span>
           <span class="meta-tag">${b.size}</span>
-          <span class="meta-tag">⚡ Instant download</span>
+          <span class="meta-tag">PDF</span>
+          <span class="meta-tag gold">⚡ Instant download</span>
         </div>
       </div>
     </a>
@@ -375,10 +364,12 @@ function renderBooks(list) {
 
 function filterBooks() {
   const q = document.getElementById('searchInput').value.toLowerCase().trim();
-  const filtered = books.filter(b =>
-    b.title.toLowerCase().includes(q) ||
-    b.tags.some(t => t.includes(q))
-  );
+  const filtered = q === ''
+    ? books
+    : books.filter(b =>
+        b.title.toLowerCase().includes(q) ||
+        b.tags.some(t => t.includes(q))
+      );
   renderBooks(filtered);
   document.getElementById('noResult').style.display = filtered.length === 0 ? 'block' : 'none';
 }
