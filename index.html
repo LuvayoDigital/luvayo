@@ -157,7 +157,7 @@ body {
 .book-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 3px;
   padding: 0 2px;
 }
 .book-title {
@@ -170,11 +170,34 @@ body {
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
-.book-price {
+
+/* PRICE ROW */
+.price-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.price-old {
+  font-size: 12px;
+  font-weight: 500;
+  color: #475569;
+  text-decoration: line-through;
+}
+.price-new {
   font-size: 15px;
   font-weight: 700;
   color: #D4A017;
 }
+.price-badge {
+  font-size: 9px;
+  font-weight: 700;
+  background: #C0392B;
+  color: #fff;
+  padding: 1px 5px;
+  border-radius: 3px;
+  letter-spacing: 0.3px;
+}
+
 .book-meta {
   display: flex;
   flex-wrap: wrap;
@@ -212,7 +235,7 @@ body {
   .brand { font-size: 22px; }
   .grid { gap: 14px; }
   .book-title { font-size: 12px; }
-  .book-price { font-size: 14px; }
+  .price-new { font-size: 14px; }
 }
 </style>
 </head>
@@ -244,36 +267,24 @@ body {
 const books = [
   {
     title: "Stop Overthinking in 7 Days",
-    price: "$9.99",
+    oldPrice: "$12.99",
+    newPrice: "$9.99",
     pages: "22 pages",
-    size: "649 ko",
+    size: "649 KB",
     img: "overthinking.png",
     url: "https://luvayo.gumroad.com/l/OverthinkingReset",
     tags: ["overthinking","anxiety","focus","mind"]
   },
   {
     title: "Stop Anxiety in 7 Days",
-    price: "$9.99",
+    oldPrice: "$12.99",
+    newPrice: "$9.99",
     pages: "29 pages",
-    size: "667 Ko",
+    size: "667 KB",
     img: "anxiety.png",
     url: "https://luvayo.gumroad.com/l/stopanxiety",
     tags: ["anxiety","calm","system","nervous"]
   },
-  
-
-
-
-
-
-
-
-
-
-
-
-
-  
 ];
 
 function renderBooks(list) {
@@ -292,7 +303,11 @@ function renderBooks(list) {
       </div>
       <div class="book-info">
         <div class="book-title">${b.title}</div>
-        <div class="book-price">${b.price}</div>
+        <div class="price-row">
+          <span class="price-old">${b.oldPrice}</span>
+          <span class="price-new">${b.newPrice}</span>
+          <span class="price-badge">SALE</span>
+        </div>
         <div class="book-meta">
           <span class="meta-tag">${b.pages}</span>
           <span class="meta-tag">${b.size}</span>
