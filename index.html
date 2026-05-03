@@ -5,54 +5,52 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Luvayo Digital — Mental Reset Systems</title>
 <style>
-* { box-sizing: border-box; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
 body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   background: #0f172a;
   color: #e2e8f0;
-  text-align: center;
+  min-height: 100vh;
 }
-.container {
-  max-width: 500px;
-  margin: auto;
+.store {
+  max-width: 680px;
+  margin: 0 auto;
   padding: 40px 20px 60px;
 }
+.header { text-align: center; margin-bottom: 28px; }
 .brand {
   font-size: 28px;
-  font-weight: 800;
-  letter-spacing: 3px;
-  color: #facc15;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #D4A017;
   margin-bottom: 6px;
 }
 .tagline {
   font-size: 13px;
   color: #94a3b8;
-  margin-bottom: 6px;
+  margin-bottom: 0;
 }
 .divider {
-  width: 40px;
+  width: 36px;
   height: 2px;
-  background: #facc15;
-  margin: 14px auto 20px;
+  background: #D4A017;
+  margin: 12px auto 0;
   border-radius: 2px;
 }
 
-/* SEARCH BAR */
+/* SEARCH */
 .search-wrap {
   display: flex;
   align-items: center;
+  gap: 10px;
   background: #1e293b;
   border: 1px solid #334155;
-  border-radius: 12px;
-  padding: 12px 16px;
-  margin-bottom: 24px;
-  gap: 10px;
+  border-radius: 10px;
+  padding: 11px 16px;
+  margin-bottom: 28px;
   transition: border-color 0.2s;
 }
-.search-wrap:focus-within {
-  border-color: #facc15;
-}
+.search-wrap:focus-within { border-color: #D4A017; }
 .search-wrap input {
   background: none;
   border: none;
@@ -61,195 +59,332 @@ body {
   font-size: 15px;
   width: 100%;
 }
-.search-wrap input::placeholder {
-  color: #475569;
-}
-.search-icon {
-  color: #475569;
-  font-size: 18px;
-  flex-shrink: 0;
-}
+.search-wrap input::placeholder { color: #475569; }
+.search-icon { color: #475569; flex-shrink: 0; }
 
-/* NO RESULT */
 .no-result {
   display: none;
+  text-align: center;
   color: #475569;
   font-size: 14px;
-  padding: 40px 0;
+  padding: 50px 0;
 }
 
 /* GRID */
 .grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 16px;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 24px;
 }
-.book-card {
-  display: block;
+
+/* BOOK CARD */
+.book-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  cursor: pointer;
   text-decoration: none;
-  border-radius: 10px;
-  overflow: hidden;
-  background: #1e293b;
-  transition: transform 0.2s, box-shadow 0.2s;
-  box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+  color: inherit;
 }
-.book-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 28px rgba(250,204,21,0.2);
+.book-wrap:hover .book-3d {
+  transform: perspective(600px) rotateY(-10deg) translateY(-5px);
 }
-.book-card img {
+
+/* 3D BOOK */
+.book-3d {
+  position: relative;
   width: 100%;
   aspect-ratio: 2 / 3;
-  object-fit: contain;
-  display: block;
-  background: #1e293b;
+  transform: perspective(600px) rotateY(-5deg);
+  transition: transform 0.25s ease;
+  transform-style: preserve-3d;
 }
+.book-cover {
+  position: absolute;
+  inset: 0;
+  border-radius: 2px 6px 6px 2px;
+  overflow: hidden;
+  background: #1e293b;
+  box-shadow: 4px 6px 20px rgba(0,0,0,0.6);
+}
+.book-cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+.book-cover-fallback {
+  width: 100%;
+  height: 100%;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 12px;
+  background: #10203a;
+  text-align: center;
+  font-size: 11px;
+  color: #D4A017;
+  font-weight: 600;
+  line-height: 1.4;
+}
+.book-spine {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 10px;
+  background: #07111f;
+  border-radius: 2px 0 0 2px;
+  transform: rotateY(-90deg) translateZ(5px);
+  transform-origin: left center;
+}
+.book-shadow {
+  position: absolute;
+  bottom: -8px;
+  left: 8px;
+  right: -6px;
+  height: 12px;
+  background: rgba(0,0,0,0.35);
+  border-radius: 50%;
+  filter: blur(5px);
+  z-index: -1;
+}
+.book-badge {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  background: #D4A017;
+  color: #0a1628;
+  font-size: 9px;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+}
+
+/* BOOK INFO */
 .book-info {
-  padding: 8px 10px 12px;
-  text-align: left;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  padding: 0 2px;
 }
 .book-title {
   font-size: 12px;
   font-weight: 600;
   color: #e2e8f0;
-  line-height: 1.3;
-  margin-bottom: 4px;
+  line-height: 1.4;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 .book-price {
-  font-size: 11px;
+  font-size: 14px;
   font-weight: 700;
-  color: #facc15;
+  color: #D4A017;
 }
+.book-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px;
+  margin-top: 3px;
+}
+.meta-tag {
+  font-size: 10px;
+  color: #94a3b8;
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 3px;
+  padding: 2px 5px;
+  white-space: nowrap;
+}
+
 .footer {
+  text-align: center;
   margin-top: 50px;
   font-size: 11px;
   color: #334155;
   letter-spacing: 1px;
+  text-transform: uppercase;
 }
 </style>
 </head>
 <body>
-<div class="container">
 
-  <div class="brand">LUVAYO</div>
-  <div class="tagline">Reset your mind. Rebuild your life.</div>
-  <div class="divider"></div>
+<div class="store">
+
+  <div class="header">
+    <div class="brand">LUVAYO</div>
+    <div class="tagline">Reset your mind. Rebuild your life.</div>
+    <div class="divider"></div>
+  </div>
 
   <!-- SEARCH -->
   <div class="search-wrap">
-    <span class="search-icon">🔍</span>
+    <svg class="search-icon" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+      <circle cx="11" cy="11" r="8"/><path d="M21 21l-4.35-4.35"/>
+    </svg>
     <input type="text" id="searchInput" placeholder="Search an ebook..." oninput="filterBooks()">
   </div>
 
   <div class="no-result" id="noResult">No ebook found. Try another word.</div>
 
   <!-- GRID -->
-  <div class="grid" id="bookGrid">
+  <div class="grid" id="bookGrid"></div>
 
-    <a class="book-card" href="https://luvayo.gumroad.com/l/OverthinkingReset" target="_blank" data-title="stop overthinking in 7 days">
-      <img src="overthinking.png" alt="Stop Overthinking in 7 Days">
-      <div class="book-info">
-        <div class="book-title">Stop Overthinking in 7 Days</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/anxiety" target="_blank" data-title="calm your mind fast anxiety">
-      <img src="anxiety.png" alt="Calm Your Mind Fast">
-      <div class="book-info">
-        <div class="book-title">Calm Your Mind Fast</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/anxiety" target="_blank" data-title="Breaking Free: Overcoming Anxiety and Reclaiming Your Life">
-      <img src="nightanxiety.png" alt="The Night Anxiety Cure">
-      <div class="book-info">
-        <div class="book-title">The Night Anxiety Cure</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/chaos" target="_blank" data-title="from chaos to clarity focus">
-      <img src="chaos.png" alt="From Chaos to Clarity">
-      <div class="book-info">
-        <div class="book-title">From Chaos to Clarity</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/confidence" target="_blank" data-title="unshakable confidence self doubt">
-      <img src="confidence.png" alt="Unshakable Confidence">
-      <div class="book-info">
-        <div class="book-title">Unshakable Confidence</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/socialanxiety" target="_blank" data-title="social anxiety fix people">
-      <img src="socialanxiety.png" alt="Social Anxiety Fix">
-      <div class="book-info">
-        <div class="book-title">Social Anxiety Fix</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/magnetic" target="_blank" data-title="be magnetic charisma attraction">
-      <img src="magnetic.png" alt="Be Magnetic">
-      <div class="book-info">
-        <div class="book-title">Be Magnetic</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/reset" target="_blank" data-title="reset your life in 30 days">
-      <img src="reset.png" alt="Reset Your Life in 30 Days">
-      <div class="book-info">
-        <div class="book-title">Reset Your Life in 30 Days</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/burnout" target="_blank" data-title="burnout recovery plan stress">
-      <img src="burnout.png" alt="The Burnout Recovery Plan">
-      <div class="book-info">
-        <div class="book-title">The Burnout Recovery Plan</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-    <a class="book-card" href="https://luvayo.gumroad.com/l/minimalist" target="_blank" data-title="minimalist mindset simple life">
-      <img src="minimalist.png" alt="Minimalist Mindset">
-      <div class="book-info">
-        <div class="book-title">Minimalist Mindset</div>
-        <div class="book-price">$9.99</div>
-      </div>
-    </a>
-
-  </div>
-
-  <div class="footer">© 2026 LUVAYO DIGITAL — ALL RIGHTS RESERVED</div>
+  <div class="footer">© 2026 Luvayo Digital — All Rights Reserved</div>
 
 </div>
 
 <script>
-function filterBooks() {
-  const query = document.getElementById('searchInput').value.toLowerCase().trim();
-  const cards = document.querySelectorAll('.book-card');
-  let visible = 0;
+const books = [
+  {
+    title: "Stop Overthinking in 7 Days",
+    price: "$9.99",
+    pages: "62 pages",
+    size: "2.4 MB",
+    format: "PDF",
+    img: "overthinking.png",
+    url: "https://luvayo.gumroad.com/l/OverthinkingReset",
+    tags: ["overthinking","anxiety","focus","mind"]
+  },
+  {
+    title: "Stop Anxiety in 7 Days",
+    price: "$9.99",
+    pages: "58 pages",
+    size: "2.2 MB",
+    format: "PDF",
+    img: "anxiety.png",
+    url: "https://luvayo.gumroad.com/l/anxiety",
+    tags: ["anxiety","calm","system","nervous"]
+  },
+  {
+    title: "The Night Anxiety Cure",
+    price: "$9.99",
+    pages: "54 pages",
+    size: "2.1 MB",
+    format: "PDF",
+    img: "nightanxiety.png",
+    url: "https://luvayo.gumroad.com/l/anxiety",
+    tags: ["night","anxiety","sleep","cure"]
+  },
+  {
+    title: "From Chaos to Clarity",
+    price: "$9.99",
+    pages: "60 pages",
+    size: "2.3 MB",
+    format: "PDF",
+    img: "chaos.png",
+    url: "https://luvayo.gumroad.com/l/chaos",
+    tags: ["focus","clarity","productivity","chaos"]
+  },
+  {
+    title: "Unshakable Confidence",
+    price: "$9.99",
+    pages: "56 pages",
+    size: "2.0 MB",
+    format: "PDF",
+    img: "confidence.png",
+    url: "https://luvayo.gumroad.com/l/confidence",
+    tags: ["confidence","mindset","self","doubt"]
+  },
+  {
+    title: "Social Anxiety Fix",
+    price: "$9.99",
+    pages: "52 pages",
+    size: "1.9 MB",
+    format: "PDF",
+    img: "socialanxiety.png",
+    url: "https://luvayo.gumroad.com/l/socialanxiety",
+    tags: ["social","anxiety","people","shyness"]
+  },
+  {
+    title: "Be Magnetic",
+    price: "$9.99",
+    pages: "50 pages",
+    size: "1.8 MB",
+    format: "PDF",
+    img: "magnetic.png",
+    url: "https://luvayo.gumroad.com/l/magnetic",
+    tags: ["charisma","attraction","magnetic","social"]
+  },
+  {
+    title: "Reset Your Life in 30 Days",
+    price: "$9.99",
+    pages: "78 pages",
+    size: "2.9 MB",
+    format: "PDF",
+    img: "reset.png",
+    url: "https://luvayo.gumroad.com/l/reset",
+    tags: ["reset","life","transformation","30 days"]
+  },
+  {
+    title: "The Burnout Recovery Plan",
+    price: "$9.99",
+    pages: "64 pages",
+    size: "2.5 MB",
+    format: "PDF",
+    img: "burnout.png",
+    url: "https://luvayo.gumroad.com/l/burnout",
+    tags: ["burnout","stress","recovery","energy"]
+  },
+  {
+    title: "Minimalist Mindset",
+    price: "$9.99",
+    pages: "48 pages",
+    size: "1.7 MB",
+    format: "PDF",
+    img: "minimalist.png",
+    url: "https://luvayo.gumroad.com/l/minimalist",
+    tags: ["minimalist","simple","clarity","focus"]
+  }
+];
 
-  cards.forEach(card => {
-    const title = card.getAttribute('data-title');
-    if (title.includes(query)) {
-      card.style.display = 'block';
-      visible++;
-    } else {
-      card.style.display = 'none';
-    }
-  });
-
-  document.getElementById('noResult').style.display = visible === 0 ? 'block' : 'none';
+function renderBooks(list) {
+  const grid = document.getElementById('bookGrid');
+  if (list.length === 0) {
+    grid.style.display = 'none';
+    return;
+  }
+  grid.style.display = 'grid';
+  grid.innerHTML = list.map(b => `
+    <a class="book-wrap" href="${b.url}" target="_blank">
+      <div class="book-3d">
+        <div class="book-spine"></div>
+        <div class="book-cover">
+          <img src="${b.img}" alt="${b.title}"
+            onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+          <div class="book-cover-fallback">${b.title}</div>
+        </div>
+        <div class="book-shadow"></div>
+        <div class="book-badge">PDF</div>
+      </div>
+      <div class="book-info">
+        <div class="book-title">${b.title}</div>
+        <div class="book-price">${b.price}</div>
+        <div class="book-meta">
+          <span class="meta-tag">${b.pages}</span>
+          <span class="meta-tag">${b.size}</span>
+          <span class="meta-tag">⚡ Instant download</span>
+        </div>
+      </div>
+    </a>
+  `).join('');
 }
+
+function filterBooks() {
+  const q = document.getElementById('searchInput').value.toLowerCase().trim();
+  const filtered = books.filter(b =>
+    b.title.toLowerCase().includes(q) ||
+    b.tags.some(t => t.includes(q))
+  );
+  renderBooks(filtered);
+  document.getElementById('noResult').style.display = filtered.length === 0 ? 'block' : 'none';
+}
+
+renderBooks(books);
 </script>
+
 </body>
 </html>
