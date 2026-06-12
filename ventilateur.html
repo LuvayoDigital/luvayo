@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ventilateur Double Turbine — Luvayo Shop</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: #f8f5f0;
+  color: #1a1a1a;
+  min-height: 100vh;
+}
+.page { max-width: 480px; margin: 0 auto; padding: 32px 20px 80px; }
+
+/* LOGO */
+.logo-wrap { text-align: center; margin-bottom: 24px; }
+.logo-link { text-decoration: none; display: inline-block; }
+.logo-text {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+  font-size: 36px; font-weight: 700;
+  letter-spacing: 12px; color: #1a1a1a;
+  line-height: 1; position: relative; display: inline-block;
+}
+.logo-text::after {
+  content: ''; position: absolute; bottom: -4px; left: 50%;
+  transform: translateX(-50%); width: 22px; height: 1.5px; background: #c4973a;
+}
+.logo-sub {
+  font-size: 10px; font-weight: 500; letter-spacing: 5px;
+  color: #c4973a; text-transform: uppercase; margin-top: 10px; display: block;
+}
+
+/* BREADCRUMB */
+.breadcrumb {
+  display: flex; align-items: center; gap: 6px;
+  font-size: 12px; color: #bbb; margin-bottom: 22px;
+  flex-wrap: wrap;
+}
+.breadcrumb a { color: #bbb; text-decoration: none; transition: color 0.15s; }
+.breadcrumb a:hover { color: #c4973a; }
+.breadcrumb span { color: #ccc; }
+.breadcrumb .current { color: #888; }
+
+/* GALLERY */
+.gallery { margin-bottom: 24px; }
+.main-img-wrap {
+  width: 100%; aspect-ratio: 1/1;
+  background: #fff; border: 1px solid #e8e2d9;
+  border-radius: 18px; overflow: hidden;
+  display: flex; align-items: center; justify-content: center;
+  margin-bottom: 10px; position: relative;
+}
+.main-img-wrap img {
+  width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 0.4s ease;
+}
+.main-img-wrap:hover img { transform: scale(1.04); }
+.badge-promo-hero {
+  position: absolute; top: 14px; left: 14px;
+  background: #c4973a; color: #fff;
+  font-size: 11px; font-weight: 700;
+  padding: 5px 12px; border-radius: 6px; letter-spacing: 0.5px;
+}
+/* THUMBNAILS */
+.thumbs { display: flex; gap: 8px; }
+.thumb {
+  width: 72px; height: 72px; flex-shrink: 0;
+  border-radius: 10px; overflow: hidden;
+  border: 2px solid transparent; cursor: pointer;
+  background: #fff; transition: border-color 0.18s;
+}
+.thumb.active { border-color: #c4973a; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.thumb-placeholder {
+  width: 100%; height: 100%;
+  background: #f0ece4; display: flex;
+  align-items: center; justify-content: center;
+  font-size: 20px;
+}
+
+/* PRODUCT HEAD */
+.product-head { margin-bottom: 20px; }
+.product-category {
+  font-size: 10px; font-weight: 600; letter-spacing: 3px;
+  text-transform: uppercase; color: #c4973a; margin-bottom: 8px;
+}
+.product-title {
+  font-size: 20px; font-weight: 700; color: #1a1a1a;
+  line-height: 1.3; margin-bottom: 10px;
+}
+.stars-row {
+  display: flex; align-items: center; gap: 6px; margin-bottom: 14px;
+}
+.star { color: #c4973a; font-size: 14px; }
+.reviews-txt { font-size: 12px; color: #aaa; }
+.price-block { display: flex; align-items: baseline; gap: 10px; }
+.price-main { font-size: 30px; font-weight: 700; color: #c4973a; }
+.price-old { font-size: 15px; color: #ccc; text-decoration: line-through; }
+.price-save {
+  font-size: 11px; font-weight: 600; color: #3a7d44;
+  background: #edf7ee; border-radius: 4px; padding: 2px 7px;
+}
+
+/* DIVIDER */
+.divider { height: 1px; background: #e8e2d9; margin: 20px 0; }
+
+/* DESCRIPTION */
+.section-title {
+  font-size: 13px; font-weight: 600; color: #1a1a1a;
+  letter-spacing: 0.3px; margin-bottom: 10px;
+}
+.description {
+  font-size: 14px; color: #555; line-height: 1.75;
+  font-weight: 300;
+}
+
+/* SPECS */
+.specs { display: flex; flex-direction: column; gap: 0; }
+.spec-row {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 11px 0; border-bottom: 1px solid #f0ece4;
+}
+.spec-row:last-child { border-bottom: none; }
+.spec-key { font-size: 13px; color: #999; font-weight: 400; }
+.spec-val { font-size: 13px; color: #1a1a1a; font-weight: 500; text-align: right; }
+
+/* FEATURES */
+.features { display: flex; flex-direction: column; gap: 10px; }
+.feature-item {
+  display: flex; align-items: flex-start; gap: 12px;
+  background: #fff; border: 1px solid #e8e2d9;
+  border-radius: 12px; padding: 14px;
+}
+.feat-icon {
+  width: 36px; height: 36px; flex-shrink: 0;
+  background: #fdf3e2; border-radius: 9px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+}
+.feat-body {}
+.feat-title { font-size: 13px; font-weight: 600; color: #1a1a1a; margin-bottom: 2px; }
+.feat-desc { font-size: 12px; color: #999; font-weight: 300; line-height: 1.5; }
+
+/* STOCK BADGE */
+.stock-row {
+  display: flex; align-items: center; gap: 8px;
+  margin-bottom: 16px;
+}
+.stock-dot {
+  width: 8px; height: 8px; border-radius: 50%; background: #3a7d44; flex-shrink: 0;
+}
+.stock-txt { font-size: 13px; color: #3a7d44; font-weight: 500; }
+
+/* CTA */
+.cta-section { position: sticky; bottom: 0; background: #f8f5f0; padding: 14px 0 0; }
+.cta-inner {
+  background: #fff; border: 1px solid #e8e2d9;
+  border-radius: 16px; padding: 16px;
+  box-shadow: 0 -4px 20px rgba(0,0,0,0.06);
+}
+.cta-price-row {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 12px;
+}
+.cta-price { font-size: 22px; font-weight: 700; color: #c4973a; }
+.cta-delivery { font-size: 11px; color: #aaa; text-align: right; line-height: 1.5; }
+.btn-whatsapp {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  background: #25D366; color: #fff;
+  font-size: 14px; font-weight: 700; padding: 14px;
+  border-radius: 12px; border: none; cursor: pointer;
+  text-decoration: none; width: 100%;
+  transition: background 0.18s, transform 0.15s;
+  font-family: 'Inter', sans-serif; letter-spacing: 0.3px;
+}
+.btn-whatsapp:hover { background: #1db954; transform: scale(1.01); }
+.btn-whatsapp svg { flex-shrink: 0; }
+.cta-note {
+  text-align: center; font-size: 11px; color: #bbb;
+  margin-top: 8px; font-weight: 300;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center; margin-top: 40px;
+  font-size: 10px; color: #ccc; letter-spacing: 2px; text-transform: uppercase;
+}
+
+@media (max-width: 400px) {
+  .page { padding: 24px 14px 80px; }
+  .logo-text { font-size: 30px; }
+  .product-title { font-size: 18px; }
+  .price-main { font-size: 26px; }
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- LOGO -->
+  <div class="logo-wrap">
+    <a class="logo-link" href="index.html">
+      <div class="logo-text">Luvayo</div>
+    </a>
+    <span class="logo-sub">Shop</span>
+  </div>
+
+  <!-- BREADCRUMB -->
+  <div class="breadcrumb">
+    <a href="index.html">Accueil</a>
+    <span>›</span>
+    <a href="shop.html">Produits</a>
+    <span>›</span>
+    <span class="current">Ventilateur Double Turbine</span>
+  </div>
+
+  <!-- GALLERY -->
+  <div class="gallery">
+    <div class="main-img-wrap">
+      <img id="mainImg" src="vent4.jpg" alt="Ventilateur Double Turbine"
+        onerror="this.style.display='none'">
+      <div class="badge-promo-hero">−43%</div>
+    </div>
+    <div class="thumbs">
+      <div class="thumb active" onclick="switchImg(this, 'vent4.jpg')">
+        <img src="vent4.jpg" alt="" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="thumb-placeholder" style="display:none">🌀</div>
+      </div>
+      <!-- Ajoute d'autres vignettes ici avec d'autres photos -->
+    </div>
+  </div>
+
+  <!-- HEAD -->
+  <div class="product-head">
+    <div class="product-category">Climatisation · Ventilateur</div>
+    <div class="product-title">Ventilateur Double Turbine avec Brumisateur LED</div>
+    <div class="stars-row">
+      <span class="star">★</span><span class="star">★</span><span class="star">★</span>
+      <span class="star">★</span><span class="star">★</span>
+      <span class="reviews-txt">124 avis</span>
+    </div>
+    <div class="price-block">
+      <span class="price-main">200 DH</span>
+      <span class="price-old">350 DH</span>
+      <span class="price-save">Économise 150 DH</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- DESCRIPTION -->
+  <div class="section-title">Description</div>
+  <p class="description">
+    Profitez d'une fraîcheur immédiate avec ce ventilateur double turbine à brumisateur intégré.
+    Idéal pour les chaudes journées marocaines, il combine deux ventilateurs puissants,
+    un système de brume fine et des LED colorées pour une ambiance agréable dans n'importe quelle pièce.
+    Compact, portable et rechargeable via USB — à poser sur un bureau, une table de nuit ou à emporter.
+  </p>
+
+  <div class="divider"></div>
+
+  <!-- FEATURES -->
+  <div class="section-title">Points forts</div>
+  <div class="features">
+    <div class="feature-item">
+      <div class="feat-icon">💧</div>
+      <div class="feat-body">
+        <div class="feat-title">Brumisateur intégré</div>
+        <div class="feat-desc">Diffuse une brume fine et rafraîchissante pour réduire la température ambiante.</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">🌀</div>
+      <div class="feat-body">
+        <div class="feat-title">Double turbine puissante</div>
+        <div class="feat-desc">Deux ventilateurs indépendants (Fan 1 & Fan 2) contrôlables séparément.</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">🎨</div>
+      <div class="feat-body">
+        <div class="feat-title">LED colorées</div>
+        <div class="feat-desc">Éclairage LED bleu/vert intégré aux pales pour une ambiance unique la nuit.</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">📡</div>
+      <div class="feat-body">
+        <div class="feat-title">Télécommande incluse</div>
+        <div class="feat-desc">Contrôle à distance : allumage, oscillation, niveau de brume, vitesse de chaque ventilateur.</div>
+      </div>
+    </div>
+    <div class="feature-item">
+      <div class="feat-icon">🔌</div>
+      <div class="feat-body">
+        <div class="feat-title">Alimentation USB</div>
+        <div class="feat-desc">Câble USB inclus — compatible avec tout chargeur, powerbank ou port USB.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- SPECS -->
+  <div class="section-title">Caractéristiques techniques</div>
+  <div class="specs">
+    <div class="spec-row">
+      <span class="spec-key">Nombre de ventilateurs</span>
+      <span class="spec-val">2 (double turbine)</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Système de brume</span>
+      <span class="spec-val">Oui, intégré</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Éclairage</span>
+      <span class="spec-val">LED RGB (bleu/vert)</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Télécommande</span>
+      <span class="spec-val">Oui, incluse</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Alimentation</span>
+      <span class="spec-val">USB (câble inclus)</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Poignée de transport</span>
+      <span class="spec-val">Oui (dorée)</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Oscillation</span>
+      <span class="spec-val">Oui (Swing)</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Couleur</span>
+      <span class="spec-val">Blanc</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Livraison</span>
+      <span class="spec-val">Partout au Maroc</span>
+    </div>
+    <div class="spec-row">
+      <span class="spec-key">Paiement</span>
+      <span class="spec-val">À la livraison</span>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- STOCK -->
+  <div class="stock-row">
+    <div class="stock-dot"></div>
+    <span class="stock-txt">En stock — Expédition sous 24–48h</span>
+  </div>
+
+  <!-- CTA STICKY -->
+  <div class="cta-section">
+    <div class="cta-inner">
+      <div class="cta-price-row">
+        <span class="cta-price">200 DH</span>
+        <span class="cta-delivery">🚚 Livraison partout<br>au Maroc</span>
+      </div>
+      <a class="btn-whatsapp"
+        href="https://wa.me/212777750713?text=${encodeURIComponent('Bonjour, je voudrais commander le Ventilateur Double Turbine avec Brumisateur à 200 DH. Merci!')}"
+        target="_blank">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="white">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+        </svg>
+        Commander sur WhatsApp
+      </a>
+      <div class="cta-note">✅ Paiement à la livraison · Réponse rapide</div>
+    </div>
+  </div>
+
+  <div class="footer">© 2026 Luvayo — Tous droits réservés</div>
+</div>
+
+<script>
+function switchImg(thumb, src) {
+  document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+  thumb.classList.add('active');
+  const main = document.getElementById('mainImg');
+  main.style.opacity = '0';
+  setTimeout(() => { main.src = src; main.style.opacity = '1'; }, 150);
+}
+document.getElementById('mainImg').style.transition = 'opacity 0.15s ease';
+</script>
+</body>
+</html>
