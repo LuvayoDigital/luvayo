@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Luvayo — Boutique</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background: #0f172a;
+  color: #e2e8f0;
+  min-height: 100vh;
+}
+
+.page {
+  max-width: 480px;
+  margin: 0 auto;
+  padding: 44px 20px 70px;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 36px;
+}
+.brand {
+  font-size: 32px;
+  font-weight: 800;
+  letter-spacing: 8px;
+  color: #D4A017;
+  margin-bottom: 6px;
+}
+.tagline {
+  font-size: 13px;
+  color: #475569;
+  letter-spacing: 0.4px;
+}
+.divider {
+  width: 40px;
+  height: 2px;
+  background: #D4A017;
+  margin: 14px auto 0;
+  border-radius: 2px;
+}
+
+/* SECTION TITLE */
+.section-label {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 14px;
+  padding-left: 2px;
+}
+
+/* CATEGORY CARDS */
+.categories {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-bottom: 40px;
+}
+
+.cat-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background: #1e293b;
+  border: 1px solid #1e3a5f;
+  border-radius: 16px;
+  padding: 18px 18px;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  position: relative;
+  overflow: hidden;
+}
+.cat-card:hover {
+  border-color: #D4A017;
+  transform: translateY(-3px);
+  box-shadow: 0 10px 28px rgba(0,0,0,0.4);
+}
+.cat-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #D4A017, transparent);
+  opacity: 0;
+  transition: opacity 0.2s;
+}
+.cat-card:hover::before { opacity: 1; }
+
+.cat-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  flex-shrink: 0;
+}
+.cat-icon.blue  { background: #0c2340; }
+.cat-icon.green { background: #0a2318; }
+.cat-icon.purple{ background: #1a0a2e; }
+.cat-icon.red   { background: #2a0a0a; }
+
+.cat-body { flex: 1; }
+.cat-title {
+  font-size: 15px;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin-bottom: 4px;
+}
+.cat-desc {
+  font-size: 12px;
+  color: #64748b;
+  line-height: 1.5;
+}
+.cat-count {
+  font-size: 11px;
+  font-weight: 600;
+  color: #D4A017;
+  background: #1c1505;
+  border: 1px solid #3d2e07;
+  border-radius: 20px;
+  padding: 3px 10px;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.arrow {
+  color: #334155;
+  font-size: 18px;
+  margin-left: 4px;
+  flex-shrink: 0;
+  transition: color 0.2s, transform 0.2s;
+}
+.cat-card:hover .arrow {
+  color: #D4A017;
+  transform: translateX(3px);
+}
+
+/* TRUST */
+.trust {
+  display: flex;
+  justify-content: center;
+  gap: 0;
+  flex-wrap: wrap;
+  border: 1px solid #1e293b;
+  border-radius: 14px;
+  overflow: hidden;
+  margin-bottom: 40px;
+}
+.trust-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  padding: 14px 12px;
+  flex: 1;
+  min-width: 80px;
+  border-right: 1px solid #1e293b;
+  font-size: 10px;
+  color: #475569;
+  text-align: center;
+  line-height: 1.4;
+}
+.trust-item:last-child { border-right: none; }
+.trust-item .ti { font-size: 18px; }
+
+/* FEATURED */
+.featured-title {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #475569;
+  margin-bottom: 14px;
+  padding-left: 2px;
+}
+.featured-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.feat-card {
+  background: #1e293b;
+  border: 1px solid #1e3a5f;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.2s, transform 0.2s;
+}
+.feat-card:hover {
+  border-color: #D4A017;
+  transform: translateY(-3px);
+}
+.feat-img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  background: #f0f4f8;
+  display: block;
+}
+.feat-img-placeholder {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #0f172a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+}
+.feat-info {
+  padding: 10px 12px 12px;
+}
+.feat-name {
+  font-size: 12px;
+  font-weight: 600;
+  color: #cbd5e1;
+  line-height: 1.4;
+  margin-bottom: 5px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.feat-price {
+  font-size: 14px;
+  font-weight: 700;
+  color: #D4A017;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  margin-top: 50px;
+  font-size: 11px;
+  color: #1e293b;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+@media (max-width: 400px) {
+  .page { padding: 30px 14px 60px; }
+  .brand { font-size: 26px; }
+  .cat-icon { width: 48px; height: 48px; font-size: 22px; }
+  .cat-title { font-size: 14px; }
+}
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="brand">LUVAYO</div>
+    <div class="tagline">Ebooks · Produits · Bien-être</div>
+    <div class="divider"></div>
+  </div>
+
+  <!-- TRUST BAR -->
+  <div class="trust">
+    <div class="trust-item">
+      <span class="ti">📦</span>
+      Livraison<br>Maroc
+    </div>
+    <div class="trust-item">
+      <span class="ti">💬</span>
+      Commande<br>WhatsApp
+    </div>
+    <div class="trust-item">
+      <span class="ti">⚡</span>
+      Ebooks<br>Instantané
+    </div>
+    <div class="trust-item">
+      <span class="ti">✅</span>
+      Paiement<br>livraison
+    </div>
+  </div>
+
+  <!-- CATEGORIES -->
+  <div class="section-label">Nos catégories</div>
+  <div class="categories">
+
+    <a class="cat-card" href="shop.html">
+      <div class="cat-icon blue">🛒</div>
+      <div class="cat-body">
+        <div class="cat-title">Produits Physiques</div>
+        <div class="cat-desc">Ventilateurs, gadgets & accessoires tendance</div>
+      </div>
+      <span class="cat-count">Nouveau</span>
+      <span class="arrow">›</span>
+    </a>
+
+    <a class="cat-card" href="ebooks.html">
+      <div class="cat-icon green">📚</div>
+      <div class="cat-body">
+        <div class="cat-title">Ebooks Bien-être</div>
+        <div class="cat-desc">Guides pour reset ta tête et reconstruire ta vie</div>
+      </div>
+      <span class="cat-count">2 guides</span>
+      <span class="arrow">›</span>
+    </a>
+
+  </div>
+
+  <!-- PRODUITS VEDETTES -->
+  <div class="featured-title">⭐ Coups de cœur</div>
+  <div class="featured-grid">
+
+    <a class="feat-card" href="shop.html">
+      <img class="feat-img" src="vent4.jpg" alt="Ventilateur"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="feat-img-placeholder" style="display:none">🌀</div>
+      <div class="feat-info">
+        <div class="feat-name">Ventilateur Double Turbine</div>
+        <div class="feat-price">200 DH</div>
+      </div>
+    </a>
+
+    <a class="feat-card" href="ebooks.html">
+      <img class="feat-img" src="overthinking.png" alt="Stop Overthinking"
+        onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+      <div class="feat-img-placeholder" style="display:none">🧠</div>
+      <div class="feat-info">
+        <div class="feat-name">Stop Overthinking in 7 Days</div>
+        <div class="feat-price">$9.99</div>
+      </div>
+    </a>
+
+  </div>
+
+  <div class="footer">© 2026 Luvayo — Tous droits réservés</div>
+
+</div>
+
+</body>
+</html>
